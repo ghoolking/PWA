@@ -2,7 +2,7 @@
   "name": "frist PWA app",
   "short_name": "FP",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/PWA/",
   "theme_color": "#FFFFFF",
   "background_color": "#858585",
   "icons": [
