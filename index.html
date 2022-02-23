@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel = "apple-touch-icon" href = "icons.png">
   <link rel="stylesheet" href="index.css">
   <link rel="manifest" href="manifest.json">
   <script src="jquery.min.js"></script>
@@ -15,29 +16,10 @@
   <script src="scanCode.js"></script>
   <script src="qrcode.js"></script>
   <script>
-    function barcode(el) {
-        SCAN.BARCODE(el, function (data) {
-            if (data) {
-                $(".result-qrcode").append("条码扫描结果——  " + data + "<br>");
-            } else {
-                alert("图片不清晰或错误");
-            }
-        });
-    }
     function qr(el) {
         SCAN.QR(el, function (data) {
             if (data) {
-                $(".result-qrcode").append("二维码扫描结果——  " + data + "<br>");
-            } else {
-                alert("图片不清晰或错误");
-            }
-        });
-    }
-
-    function both(el) {
-        SCAN.BOTHSCAN(el, function (data) {
-            if (data) {
-                $(".result-qrcode").append("扫描结果—— " + data + "<br>");
+                $(".result-qrcode").append("二维码扫描结果——  <input title='text' id='text' type='text' value='" + data + "'/><br>");
             } else {
                 alert("图片不清晰或错误");
             }
@@ -49,29 +31,16 @@
 
 <body>
   <div class="make-qrcode">
-    <input id="text" type="text" value="" /><br />
+    <input title="text" id="text" type="text" value="" /><br />
     <button id="makecode">生成</button><br />
     <div id="qrcode"></div>
   </div>
   <div class="decode">
     <div>
-      <div class="qr-btn" onclick="barcode(this)">条码
-        <input input-type="jsScan" type="file" name="jsScan" hidden/>
-      </div>
-    </div>
-    
-    <div>
       <div class="qr-btn" onclick="qr(this)">二维码
         <input input-type="jsScan" type="file" name="jsScan" hidden/>
       </div>
     </div>
-    
-    <div>
-      <div class="qr-btn" onclick="both(this)">二维码条码
-        <input input-type="jsScan" type="file" name="jsScan" hidden/>
-      </div>
-    </div>
-    
     <div class="result-qrcode">
     </div>
   </div>
