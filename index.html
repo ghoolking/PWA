@@ -19,7 +19,7 @@
     function qr(el) {
         SCAN.QR(el, function (data) {
             if (data) {
-                $(".result-qrcode").append("二维码扫描结果——  <input title='text' id='text' type='text' value='" + data + "'/><br>");
+                $(".result-qrcode").append("<div><span>二维码扫描结果</span><p>" + data + "</p></div>");
             } else {
                 alert("图片不清晰或错误");
             }
@@ -31,13 +31,19 @@
 
 <body>
   <div class="make-qrcode">
-    <input title="text" id="text" type="text" value="" /><br />
-    <button id="makecode">生成</button><br />
+    <h1>生成二维码</h1>
+    <input title="text" id="text" type="text" value="" />
+    <div class="button">
+      <button id="makecode">生成</button>
+      <button id="clearcode">清除</button>
+    </div>
     <div id="qrcode"></div>
   </div>
-  <div class="decode">
+  <div class="decode" >
+    <h1>解析二维码</h1>
     <div>
-      <div class="qr-btn" onclick="qr(this)">二维码
+      <div class="qr-btn" onclick="qr(this)">
+        <span>解析</span>
         <input input-type="jsScan" type="file" name="jsScan" hidden/>
       </div>
     </div>
@@ -47,8 +53,8 @@
 </body>
 <script type="text/javascript">
   var QRcode = new QRCode(document.getElementById("qrcode"), {
-    width : 100,
-    height : 100
+    width : 200,
+    height : 200
   });
   
   function makeCode () {		
@@ -62,9 +68,22 @@
     QRcode.makeCode(elText.value);
   }
   
+  function clearCode () {
+    let elText = document.getElementById("text")
+
+    if(elText.value){
+      elText.value = null
+      QRcode.clear()
+    }
+
+  }
+
   makeCode();
   $("#makecode").on("click",()=>{
     makeCode();
+  })
+  $("#clearcode").on("click",()=>{
+    clearCode();
   })
   $("#text").
     on("blur", function () {
@@ -75,6 +94,7 @@
         makeCode();
       }
     });
+
   </script>
 <script>
   if (navigator.serviceWorker != null) {

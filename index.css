@@ -2,11 +2,16 @@ body {
   background-color: rgb(107, 170, 224);
 }
 .make-qrcode {
-  width: 100%;
+  width: 75vw;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0 auto;
 }
 #text {
-  width: 50vw;
+  width: calc(100% - 30px);
   height: 35px;
   border: 1px solid #6b6b6b;
   border-radius: 15px;
@@ -14,6 +19,33 @@ body {
   font-size: 20px;
   margin: 25px;
 }
-#makecode {
+.button {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+#makecode, #clearcode {
   margin: 25px;
+  width: 50%;
+  height: 100%;
+}
+#qrcode {
+  margin: 25px;
+}
+.decode {
+  text-align: center;
+}
+.qr-btn {
+  width: 200px;
+  margin: 0 auto;
+  border: 1px solid #6b6b6b;
+  height: 40px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
