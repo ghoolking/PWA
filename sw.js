@@ -4,7 +4,8 @@ var cacheList = [
   '/PWA/index.html',
   '/PWA/index.css',
   '/PWA/icons.png',
-  '/PWA/qrcode.js'
+  '/PWA/qrcode.js',
+  '/PWA/qrcode.min.js'
 ]
 self.addEventListener('install', e => {
   e.waitUntil(
