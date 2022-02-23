@@ -6,17 +6,76 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel = "apple-touch-icon" href = "icons.png">
   <link rel="stylesheet" href="index.css">
   <link rel="manifest" href="manifest.json">
   <script src="jquery.min.js"></script>
-  <script src="qrcode.min.js"></script>
+  <script src="zepto.js"></script>
+  <script src="qrcode.lib.min.js"></script>
+  <script src="quagga.min.js"></script>
+  <script src="scanCode.js"></script>
   <script src="qrcode.js"></script>
+  <script>
+    function qr(el) {
+        SCAN.QR(el, function (data) {
+            if (data) {
+                $(".result-qrcode").append("二维码扫描结果——  <input title='text' id='text' type='text' value='" + data + "'/><br>");
+            } else {
+                alert("图片不清晰或错误");
+            }
+        });
+    }
+
+</script>
 </head>
 
 <body>
-  <input id="text" type="text" value="http://www.runoob.com" /><br />
-  <div id="qrcode"></div>
+  <div class="make-qrcode">
+    <input title="text" id="text" type="text" value="" /><br />
+    <button id="makecode">生成</button><br />
+    <div id="qrcode"></div>
+  </div>
+  <div class="decode">
+    <div>
+      <div class="qr-btn" onclick="qr(this)">二维码
+        <input input-type="jsScan" type="file" name="jsScan" hidden/>
+      </div>
+    </div>
+    <div class="result-qrcode">
+    </div>
+  </div>
 </body>
+<script type="text/javascript">
+  var QRcode = new QRCode(document.getElementById("qrcode"), {
+    width : 100,
+    height : 100
+  });
+  
+  function makeCode () {		
+    var elText = document.getElementById("text");
+    
+    if (!elText.value) {
+      elText.focus();
+      return;
+    }
+    
+    QRcode.makeCode(elText.value);
+  }
+  
+  makeCode();
+  $("#makecode").on("click",()=>{
+    makeCode();
+  })
+  $("#text").
+    on("blur", function () {
+      makeCode();
+    }).
+    on("keydown", function (e) {
+      if (e.keyCode == 13) {
+        makeCode();
+      }
+    });
+  </script>
 <script>
   if (navigator.serviceWorker != null) {
     navigator.serviceWorker.register('./sw.js', {scope: './'})

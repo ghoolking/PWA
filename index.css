@@ -1,3 +1,19 @@
 body {
   background-color: rgb(107, 170, 224);
 }
+.make-qrcode {
+  width: 100%;
+  text-align: center;
+}
+#text {
+  width: 50vw;
+  height: 35px;
+  border: 1px solid #6b6b6b;
+  border-radius: 15px;
+  padding: 5px 15px;
+  font-size: 20px;
+  margin: 25px;
+}
+#makecode {
+  margin: 25px;
+}
