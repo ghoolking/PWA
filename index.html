@@ -13,8 +13,11 @@
 </head>
 
 <body>
-  <input id="text" type="text" value="http://www.runoob.com" /><br />
-  <div id="qrcode"></div>
+  <div class="make-qrcode">
+    <input id="text" type="text" value="" /><br />
+    <button id="makecode">生成</button><br />
+    <div id="qrcode"></div>
+  </div>
 </body>
 <script type="text/javascript">
   var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -26,7 +29,6 @@
     var elText = document.getElementById("text");
     
     if (!elText.value) {
-      alert("Input a text");
       elText.focus();
       return;
     }
@@ -35,7 +37,9 @@
   }
   
   makeCode();
-  
+  $("#makecode").on("click",()=>{
+    makeCode();
+  })
   $("#text").
     on("blur", function () {
       makeCode();
